@@ -115,5 +115,3 @@ Then follow the platform's deployment instructions.
 ---
 
 ## 📄 License
-
-This project is licensed under the MIT License.
