@@ -397,7 +397,7 @@ export default function Courses() {
   };
 
   return (
-    <div className="p-6 bg-black min-h-screen text-white">
+    <div className="min-h-screen bg-[#0f172a] p-6 text-white">
       {/* Header + Buttons */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h2 className="text-3xl font-bold">Manage Courses</h2>
