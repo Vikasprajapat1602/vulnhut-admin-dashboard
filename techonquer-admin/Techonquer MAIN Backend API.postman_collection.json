@@ -1,0 +1,705 @@
+{
+	"info": {
+		"_postman_id": "ec8bba31-7eda-4b46-83a9-5564734e82d0",
+		"name": "Techonquer Backend API",
+		"description": "Complete API collection for Techonquer Backend with session-based authentication, testimonials, and courses management.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30171018",
+		"_collection_link": "https://warped-equinox-453260.postman.co/workspace/Techonquer-Backend-Main~2c4e5bac-0b5c-4a2e-8b33-9c2b01230a0d/collection/30171018-ec8bba31-7eda-4b46-83a9-5564734e82d0?action=share&source=collection_link&creator=30171018"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register a new user account"
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"rocketbhaiya\",\n  \"email\": \"ap975498@gmail.com\",\n  \"password\": \"#Abc000111222\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register-admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-admin"
+							]
+						},
+						"description": "Register a new admin account (only available when ADMIN_REG=true)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"ap975498@gmail.com\",\n  \"password\": \"#Abc000111222\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login with email and password"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						},
+						"description": "Get current authenticated user details"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Logout and destroy session"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints for user registration, login, and session management"
+		},
+		{
+			"name": "Testimonials",
+			"item": [
+				{
+					"name": "Get All Testimonials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials?page=1&limit=10&isActive=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"description": "Filter by active status"
+								}
+							]
+						},
+						"description": "Get all testimonials with pagination and filtering"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Testimonial by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/{{testimonial_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								"{{testimonial_id}}"
+							]
+						},
+						"description": "Get a specific testimonial by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Testimonial (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"designation\": \"Software Engineer\",\n  \"company\": \"Tech Corp\",\n  \"message\": \"This is an amazing platform! I learned so much from the courses here. Highly recommended for anyone looking to upgrade their tech skills.\",\n  \"rating\": 5,\n  \"image\": \"https://example.com/profile.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							]
+						},
+						"description": "Create a new testimonial (Admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Testimonial (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe Updated\",\n  \"designation\": \"Senior Software Engineer\",\n  \"company\": \"Tech Corp\",\n  \"message\": \"This is an amazing platform! I learned so much from the courses here. Highly recommended for anyone looking to upgrade their tech skills. Updated review.\",\n  \"rating\": 5,\n  \"image\": \"https://example.com/profile-updated.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/{{testimonial_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								"{{testimonial_id}}"
+							]
+						},
+						"description": "Update an existing testimonial (Admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Testimonial (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/{{testimonial_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								"{{testimonial_id}}"
+							]
+						},
+						"description": "Delete a testimonial (Admin only)"
+					},
+					"response": []
+				}
+			],
+			"description": "Testimonials management endpoints"
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Get All Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/courses?page=1&limit=10&category=Programming&level=Beginner&isActive=true&isFeatured=false&sortBy=createdAt&sortOrder=desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page"
+								},
+								{
+									"key": "category",
+									"value": "Programming",
+									"description": "Filter by category"
+								},
+								{
+									"key": "level",
+									"value": "Beginner",
+									"description": "Filter by level"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"description": "Filter by active status"
+								},
+								{
+									"key": "isFeatured",
+									"value": "false",
+									"description": "Filter by featured status"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"description": "Sort field"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"description": "Sort order (asc/desc)"
+								}
+							]
+						},
+						"description": "Get all courses with filtering, sorting, and pagination"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/courses/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses",
+								"categories"
+							]
+						},
+						"description": "Get all available course categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/courses/{{course_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses",
+								"{{course_id}}"
+							]
+						},
+						"description": "Get a specific course by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Course (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"VAPT - July 2025 Batch\",\n  \"path\": \"vapt-july-2025-batch\",\n  \"description\": \"Become a professional penetration tester with this in-depth VAPT course. Learn web, network, and system exploitation, report writing, red teaming basics, and more. Ideal for cybersecurity enthusiasts aiming to break into offensive security.\",\n  \"shortDescription\": \"Master VAPT with hands-on exploitation, report writing, and red teaming fundamentals.\",\n  \"instructor\": \"Vikas Kumawat\",\n  \"duration\": \"2 months\",\n  \"level\": \"Intermediate\",\n  \"price\": 3000,\n  \"originalPrice\": 3500,\n  \"category\": \"Cybersecurity\",\n  \"syllabusDownloadLink\": \"http://api.courses.durbhasigurukulam.com/api/files/view/f5a84bed-afb9-4901-bb49-2c9129d0d448-1752911199829.pdf\",\n  \"enrollLink\": \"https://pages.razorpay.com/VAPT-course\",\n  \"tags\": [\n    \"VAPT\",\n    \"Penetration Testing\",\n    \"Bug Bounty\",\n    \"Ethical Hacking\",\n    \"OWASP Top 10\",\n    \"Nmap\",\n    \"Burp Suite\",\n    \"Metasploit\"\n  ],\n  \"image\": \"http://api.courses.durbhasigurukulam.com/api/files/view/4b37eedc-7834-45ad-b892-5f9a2664140e-1752911500433.jpeg\",\n  \"requirements\": [\n    \"Basic understanding of computers and networking\",\n    \"No prior hacking experience required\",\n    \"Laptop or desktop with internet access\",\n    \"Curiosity to explore how systems can be broken\"\n  ],\n  \"whatYouWillLearn\": [\n    \"Introduction to VAPT methodology\",\n    \"Information gathering & enumeration\",\n    \"Vulnerability scanning and manual analysis\",\n    \"Web application attacks (OWASP Top 10)\",\n    \"Network exploitation and service attacks\",\n    \"Report writing and real-world documentation\",\n    \"Hands-on labs using Kali Linux and hacking tools\",\n    \"Basics of red teaming and evasion techniques\"\n  ],\n  \"isFeatured\": true\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/courses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses"
+							]
+						},
+						"description": "Create a new course (Admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Course (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Complete Web Development Bootcamp - Updated\",\n  \"description\": \"Learn full-stack web development from scratch with updated content. This comprehensive course covers HTML, CSS, JavaScript, Node.js, Express, MongoDB, and React. Perfect for beginners who want to become professional web developers.\",\n  \"price\": 2799,\n  \"isFeatured\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/courses/{{course_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses",
+								"{{course_id}}"
+							]
+						},
+						"description": "Update an existing course (Admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/courses/{{course_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"courses",
+								"{{course_id}}"
+							]
+						},
+						"description": "Delete a course (Admin only)"
+					},
+					"response": []
+				}
+			],
+			"description": "Courses management endpoints"
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check server health and status"
+					},
+					"response": []
+				},
+				{
+					"name": "API Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "Get API information and available endpoints"
+					},
+					"response": []
+				}
+			],
+			"description": "Health check and API information endpoints"
+		},
+		{
+			"name": "linkGen",
+			"item": [
+				{
+					"name": "linkGen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/rocket-bhaiya/Downloads/Vikas_Kumawat_Resume.pdf"
+								},
+								{
+									"key": "description",
+									"value": "hello this is my resume",
+									"type": "text"
+								},
+								{
+									"key": "isPublic",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "tag1,tag2,tag3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/files",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"files"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "linkGen",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/home/rocket-bhaiya/Videos/course.jpeg"
+										},
+										{
+											"key": "description",
+											"value": "hello this is my syllabus",
+											"type": "text"
+										},
+										{
+											"key": "isPublic",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "tag1,tag2,tag3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/files",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"files"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Jul 2025 15:15:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "636"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27c-+dHkiqPW0fyHkpO0Y2gj/okjMYo\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"File uploaded successfully\",\n    \"data\": {\n        \"id\": \"68824dfd453167f881e629d5\",\n        \"filename\": \"a12216f1-3c76-4559-9f39-929950c4ce11-1753370109670.jpeg\",\n        \"originalName\": \"course.jpeg\",\n        \"publicUrl\": \"http://api.courses.durbhasigurukulam.com/api/files/view/a12216f1-3c76-4559-9f39-929950c4ce11-1753370109670.jpeg\",\n        \"downloadUrl\": \"http://api.courses.durbhasigurukulam.com/api/files/download/a12216f1-3c76-4559-9f39-929950c4ce11-1753370109670.jpeg\",\n        \"size\": 201358,\n        \"mimetype\": \"image/jpeg\",\n        \"category\": \"image\",\n        \"description\": \"hello this is my syllabus\",\n        \"isPublic\": true,\n        \"tags\": [\n            \"tag1\",\n            \"tag2\",\n            \"tag3\"\n        ],\n        \"createdAt\": \"2025-07-24T15:15:09.699Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "testimonial_id",
+			"value": "replace_with_actual_testimonial_id",
+			"type": "string"
+		},
+		{
+			"key": "course_id",
+			"value": "replace_with_actual_course_id",
+			"type": "string"
+		}
+	]
+}

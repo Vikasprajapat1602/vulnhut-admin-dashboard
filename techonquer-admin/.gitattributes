@@ -1,0 +1,8 @@
+# Enforce LF line endings for all text files
+* text=auto eol=lf
+
+# Optional: Handle specific file types if needed
+*.sh text eol=lf
+*.js text eol=lf
+*.rs text eol=lf
+*.py text eol=lf
