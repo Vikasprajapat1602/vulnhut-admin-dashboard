@@ -114,4 +114,3 @@ Then follow the platform's deployment instructions.
 
 ---
 
-## 📄 License
