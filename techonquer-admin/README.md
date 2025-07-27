@@ -112,5 +112,3 @@ Then follow the platform's deployment instructions.
 
 ![Dashboard UI](./public/Dashboard.png)
 
----
-
